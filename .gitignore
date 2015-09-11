@@ -1,0 +1,12 @@
+.settings/
+/.classpath
+/.project
+target/
+/bin/
+*.iml
+*.iws
+*.ipr
+.idea/
+*.prefs
+settings.xml
+/.DS_Store
