@@ -4,9 +4,10 @@ to replace the JPA implemenation from hibernate to openjpa. In this example post
 be replace by any other DB such as MySql, Oracle, H2 etc.
 
 #### Loadtime Weaving Activated
-With the use of openjpa enhancemwnt to the source entity classes after they have been compiled is required and to do so 
+With the use of openjpa enhancement to the source entity classes after they have been compiled is required and to do so 
 the maven plugin `openjpa-maven-plugin` is introduced to do just that. For more on enhancing of entity classes visit here
-http://openjpa.apache.org/enhancement-with-maven.html
+http://openjpa.apache.org/enhancement-with-maven.html. The `spring-boot-maven-plugin` needs to be configured for runtime
+enchancement as well.
 
 
 
@@ -27,7 +28,9 @@ http://openjpa.apache.org/enhancement-with-maven.html
 				<version>${spring.version}</version>
 			</dependency>
 		</dependencies>
-		<configuration>					       	<agent>${settings.localRepository}/org/springframework/spring-instrument/${spring.version}/spring-instrument-${spring.version}.jar</agent>					<agent>${settings.localRepository}/org/apache/openjpa/openjpa/${openjpa.version}/openjpa-${openjpa.version}.jar</agent>
+		<configuration>					       	   
+			<agent>${settings.localRepository}/org/springframework/spring-instrument/${spring.version}/spring-instrument-${spring.version}.jar</agent>					
+			<agent>${settings.localRepository}/org/apache/openjpa/openjpa/${openjpa.version}/openjpa-${openjpa.version}.jar</agent>
 		</configuration>
 	</plugin>
 	<plugin>
