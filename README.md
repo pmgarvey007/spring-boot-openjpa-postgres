@@ -39,7 +39,9 @@ http://openjpa.apache.org/enhancement-with-maven.html
 				</dependencies>
 			</plugin>
 			
-			```
+			
+			
+```
 
 #### Unit Testing and Runtime Enhancing
 
