@@ -11,33 +11,52 @@ http://openjpa.apache.org/enhancement-with-maven.html
 
 
 ```bash
-<plugin>
+	<plugin>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-maven-plugin</artifactId>
+		<version>${spring.boot.version}</version>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>springloaded</artifactId>
+				<version>1.2.4.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-instrument</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+		</dependencies>
+		<configuration>					       	<agent>${settings.localRepository}/org/springframework/spring-instrument/${spring.version}/spring-instrument-${spring.version}.jar</agent>					<agent>${settings.localRepository}/org/apache/openjpa/openjpa/${openjpa.version}/openjpa-${openjpa.version}.jar</agent>
+		</configuration>
+	</plugin>
+	<plugin>
+		<groupId>org.apache.openjpa</groupId>
+		<artifactId>openjpa-maven-plugin</artifactId>
+		<configuration>
+			<includes>**/entity/*.class</includes>
+			<addDefaultConstructor>true</addDefaultConstructor>
+			<enforcePropertyRestrictions>true</enforcePropertyRestrictions>
+			<sqlFile>src/main/resources/schema.sql</sqlFile>
+			<persistenceXmlFile>src/main/resources/META-INF/persistence.xml</persistenceXmlFile>
+		</configuration>
+		<executions>
+			<execution>
+				<id>enhancer</id>
+				<phase>process-classes</phase>
+				<goals>
+					<goal>enhance</goal>
+				</goals>
+			</execution>
+		</executions>
+		<dependencies>
+			<dependency>
 				<groupId>org.apache.openjpa</groupId>
-				<artifactId>openjpa-maven-plugin</artifactId>
-				<configuration>
-					<includes>**/entity/*.class</includes>
-					<addDefaultConstructor>true</addDefaultConstructor>
-					<enforcePropertyRestrictions>true</enforcePropertyRestrictions>
-					<sqlFile>src/main/resources/schema.sql</sqlFile>
-					<persistenceXmlFile>src/main/resources/META-INF/persistence.xml</persistenceXmlFile>
-				</configuration>
-				<executions>
-					<execution>
-						<id>enhancer</id>
-						<phase>process-classes</phase>
-						<goals>
-							<goal>enhance</goal>
-						</goals>
-					</execution>
-				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>org.apache.openjpa</groupId>
-						<artifactId>openjpa</artifactId>
-						<version>${openjpa.version}</version>
-					</dependency>
-				</dependencies>
-			</plugin>
+				<artifactId>openjpa</artifactId>
+				<version>${openjpa.version}</version>
+			</dependency>
+		</dependencies>
+	</plugin>
 			
 			
 			
