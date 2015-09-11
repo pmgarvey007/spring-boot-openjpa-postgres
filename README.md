@@ -12,6 +12,7 @@ enchancement as well.
 
 
 ```bash
+
 	<plugin>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-maven-plugin</artifactId>
@@ -60,9 +61,7 @@ enchancement as well.
 			</dependency>
 		</dependencies>
 	</plugin>
-			
-			
-			
+
 ```
 
 #### Unit Testing and Runtime Enhancing
@@ -75,10 +74,13 @@ in my maven repository. You can replace `${user-home}` with the path to your use
 and `${openjpa.version}` should be based on the versions of spring and openjpa you are using in your `pom.xml` respectively.
 
 ```bash
+
 -javaagent:${user.home}.m2/repository/org/springframework/spring-instrument/${spring.version}/spring-instrument-${spring.version}.jar
 
 or
+
 -javaagent:"${user.home}/.m2/repository/org/apache/openjpa/openjpa/${openjpa.version}/openjpa-${openjpa.version}.jar"
+
 ```
 
 
